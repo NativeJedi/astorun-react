@@ -1,0 +1,19 @@
+@import "src/assets/styles/tools/tools";
+
+.app-cart {
+  .app-cart-overlay {
+    justify-content: flex-end;
+  }
+
+  .app-cart-paper {
+    margin: 0;
+    height: 100vh;
+    max-height: unset;
+  }
+
+  .app-cart-title {
+    background-color: $main-color;
+    color: #fff;
+    font-weight: 500;
+  }
+}

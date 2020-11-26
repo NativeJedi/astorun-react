@@ -1,0 +1,96 @@
+@import "src/assets/styles/tools/tools";
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 8px 0 5px 0;
+  background-color: #fff;
+  box-shadow: 0 1px 20px rgba(#000, .5);
+  z-index: 5;
+  transition: transform .3s ease-in-out;
+  &.is-hidden {
+    transform: translateY(-100%);
+  }
+
+  &__container {
+    @extend %flex-ac;
+    line-height: 16px;
+  }
+
+  &__languages {
+    margin-left: auto;
+    margin-right: 20px;
+    text-transform: uppercase;
+    .app-locale-btn.is-active {
+      border-bottom: 2px solid $main-color;
+      color: $main-color;
+    }
+
+    @media only screen and (max-width : 767px) {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.logo {
+  display: block;
+  width: 70px;
+  &__img {
+    max-width: 100%;
+  }
+  @media only screen  and (max-width : 767px) {
+    order: 1;
+  }
+}
+
+.nav {
+  margin-left: 60px;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  @media only screen and (max-width : 767px) {
+    margin: auto 0;
+    font-weight: bold;
+  }
+  &__list {
+    @extend %flex;
+    @media only screen and (max-width : 767px) {
+      flex-direction: column;
+      text-align: center;
+      color: #fff;
+    }
+  }
+  &__item {
+    &:not(:last-child) {
+      margin-right: 40px;
+      @media only screen and (max-width : 767px) {
+        margin: 0 0 30px 0;
+      }
+    }
+  }
+  &__link {
+    display: block;
+    padding-bottom: 2px;
+    &:hover {
+      color: $main-color;
+    }
+    &.is-active {
+      color: $main-color;
+      border-bottom: 2px solid currentColor;
+    }
+  }
+}
+
+.btn-menu {
+  display: none;
+  order: 2;
+  @media only screen and (max-width : 767px) {
+    display: block;
+  }
+}
+
+.scroll-disable {
+  overflow: hidden;
+}
