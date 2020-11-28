@@ -38,11 +38,15 @@ export const getCollections: () => Promise<TCollections> = () =>
 
 export const getProducts: () => Promise<TProducts> = () =>
   parseRefResponse(productsRef).then((productsDocs) =>
-    productsDocs.map(({ id, title, price, imageUrl, sizes }) => ({
-      id,
-      title,
-      price,
-      imageUrl,
-      sizes,
-    }))
+    productsDocs.map(
+      ({ id, title, price, imageUrl, sizes, images, description }) => ({
+        id,
+        title,
+        price,
+        imageUrl,
+        sizes,
+        images,
+        description,
+      })
+    )
   );

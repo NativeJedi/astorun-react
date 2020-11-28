@@ -1,0 +1,30 @@
+.app-product-card {
+  max-width: 345px;
+  height: 345px;
+  &.MuiPaper-rounded {
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+
+  &__media {
+    height: 0;
+    padding-top: 70%;
+  }
+
+  &__content.MuiCardContent-root {
+    padding-bottom: 0;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: inherit;
+    font-weight: 500;
+  }
+}

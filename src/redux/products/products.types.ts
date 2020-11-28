@@ -1,9 +1,15 @@
 import { IError } from '../../types/error.type';
 
+export interface IProductImage {
+  url: string;
+}
+
 export interface ISize {
   name: string;
   count: number;
 }
+
+export type TProductImages = IProductImage[];
 
 export interface IProduct {
   id: string;
@@ -11,6 +17,8 @@ export interface IProduct {
   title: string;
   imageUrl: string;
   sizes: ISize[];
+  images: TProductImages;
+  description: string;
 }
 
 export type TProducts = IProduct[];

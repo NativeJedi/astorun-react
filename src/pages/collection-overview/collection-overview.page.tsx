@@ -4,7 +4,7 @@ import AppProductCard from '../../components/app-product-card/app-product-card.c
 import { fetchProductsStart } from '../../redux/products/products.actions';
 import { selectProducts } from '../../redux/products/products.selectors';
 
-const ProductsPage: React.FC = () => {
+const CollectionOverviewPage: React.FC = () => {
   const products = useSelector(selectProducts);
   const dispatch = useDispatch();
 
@@ -25,4 +25,4 @@ const ProductsPage: React.FC = () => {
   );
 };
 
-export default ProductsPage;
+export default CollectionOverviewPage;

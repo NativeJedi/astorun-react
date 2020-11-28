@@ -1,0 +1,33 @@
+@import 'src/assets/styles/tools/variables';
+
+.product-details {
+  display: flex;
+
+  &__info {
+    margin-left: 20px;
+  }
+
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: auto;
+  }
+
+  &__price {
+    font-weight: bold;
+    font-size: 25px;
+    font-style: italic;
+    color: $main-color;
+  }
+
+  &__size-select {
+    margin-left: auto;
+  }
+
+  &__btn {
+    margin-left: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}

@@ -1,24 +1,55 @@
 import React from 'react';
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  CardActions,
+  IconButton,
+  CardActionArea,
+} from '@material-ui/core';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import { Link } from 'react-router-dom';
 import { IProduct } from '../../redux/products/products.types';
+import './app-product-card.styles.scss';
+import { ProductDetailsRoute } from '../../routes/index';
 
 interface ICardProps {
   product: IProduct;
 }
 
 const AppProductCard = ({ product }: ICardProps): React.ReactElement => {
-  const { title, imageUrl, price } = product;
+  const { title, imageUrl, price, id } = product;
+  const path = ProductDetailsRoute.getPath!(id);
 
   return (
-    <div className="app-product-card">
-      <div
-        className="app-product-card__background"
-        style={{ backgroundImage: `url(${imageUrl})` }}
-      />
-      <div className="app-product-card__footer">
-        <span>{title}</span>
-        <span>{price}</span>
-      </div>
-    </div>
+    <Link to={path}>
+      <Card raised className="app-product-card">
+        <CardActionArea>
+          <CardMedia
+            className="app-product-card__media"
+            image={imageUrl}
+            title={title}
+          />
+        </CardActionArea>
+
+        <CardContent className="app-product-card__content">
+          <div className="app-product-card__info">
+            <h4 className="app-product-card__title">{title}</h4>
+            <span className="app-product-card__price">{price}</span>
+          </div>
+        </CardContent>
+
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+        </CardActions>
+      </Card>
+    </Link>
   );
 };
 
