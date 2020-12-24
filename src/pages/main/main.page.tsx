@@ -1,11 +1,12 @@
+import { WithT } from 'i18next';
 import React from 'react';
-import { WithTranslation, withTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import './main.styles.scss';
 import AppLocales from '../../components/app-locales/app-locales.component';
 
-const MainPage: React.FC<WithTranslation> = ({ t }) => (
+const MainPage = ({ t }: WithT): React.ReactElement => (
   <section className="main-wrapper">
     <div className="container">
       <Link to="/" className="logo-link">

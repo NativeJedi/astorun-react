@@ -1,0 +1,17 @@
+@import 'src/assets/styles/tools/tools';
+
+.app-cart-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  &__text {
+    font-size: 22px;
+    color: $placeholder-color;
+    font-weight: 500;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+}

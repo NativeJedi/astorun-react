@@ -13,6 +13,7 @@ function* fetchCollections() {
     yield put(fetchCollectionsSuccess(collections));
   } catch (e) {
     yield put(fetchCollectionsFailure(e));
+    throw new Error(e);
   }
 }
 

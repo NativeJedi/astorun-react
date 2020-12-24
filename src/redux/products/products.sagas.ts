@@ -10,6 +10,7 @@ function* fetchProducts() {
     yield put(fetchProductsSuccess(products));
   } catch (e) {
     yield put(fetchProductsFailure(e));
+    throw new Error(e);
   }
 }
 

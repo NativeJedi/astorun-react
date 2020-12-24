@@ -8,3 +8,8 @@ export const selectCollections = createSelector(
   [selectCollectionsState],
   ({ collections }: ICollectionsState) => collections
 );
+
+export const selectCollectionsLoading = createSelector(
+  [selectCollectionsState],
+  ({ isLoading }: ICollectionsState): boolean => isLoading
+);

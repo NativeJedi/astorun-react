@@ -9,6 +9,7 @@ import {
   MainRoute,
   ProductDetailsRoute,
   ShopRoute,
+  CheckoutRoute,
 } from './routes/index';
 
 const App: React.FC = () => (
@@ -17,11 +18,18 @@ const App: React.FC = () => (
       <ErrorBoundary>
         <Suspense fallback={<Spinner />}>
           <AppRoute route={MainRoute} />
-          <Route path={[ShopRoute.path, ProductDetailsRoute.path]}>
+          <Route
+            path={[
+              ShopRoute.path,
+              ProductDetailsRoute.path,
+              CheckoutRoute.path,
+            ]}
+          >
             <MainLayout>
               <AppRoute route={ShopRoute} />
               <AppRoute route={CollectionOverviewRoute} />
               <AppRoute route={ProductDetailsRoute} />
+              <AppRoute route={CheckoutRoute} />
             </MainLayout>
           </Route>
         </Suspense>

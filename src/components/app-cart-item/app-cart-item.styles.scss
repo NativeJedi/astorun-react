@@ -1,0 +1,35 @@
+@import 'src/assets/styles/tools/tools';
+
+.app-cart-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+  margin-bottom: 15px;
+
+  &__image {
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+  }
+
+  &__title {
+    margin: 0 0 5px 0;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  &__details-row {
+    display: flex;
+  }
+
+  &__details-label {
+    margin-right: 8px;
+  }
+
+  &__remove {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+}

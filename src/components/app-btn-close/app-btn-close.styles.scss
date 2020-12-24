@@ -1,0 +1,7 @@
+@import 'src/assets/styles/tools/tools';
+
+.app-btn-close {
+  &:hover {
+    color: $main-color;
+  }
+}

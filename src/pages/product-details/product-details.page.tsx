@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import AppCarousel from '../../components/app-carousel/app-carousel.component';
 import AppSelect from '../../components/app-select/app-select.component';
 import { getProducts } from '../../firebase/firebase.requests';
+import { addItemAction } from '../../redux/cart/cart.actions';
 import { IProduct } from '../../redux/products/products.types';
 import './product-details.styles.scss';
 
 const ProductDetailsPage = (): React.ReactElement | null => {
   const [product, setProduct] = useState<IProduct | null>(null);
-
   const [selectedSize, setSize] = useState<string>('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getProducts().then(([firstProduct]) => {
@@ -20,10 +22,22 @@ const ProductDetailsPage = (): React.ReactElement | null => {
 
   if (!product) return null;
 
-  const { imageUrl, title, price, sizes, images, description } = product;
+  const { id, imageUrl, title, price, sizes, images, description } = product;
 
   const sliderImages: string[] = [imageUrl, ...images.map(({ url }) => url)];
   const sizeNames: string[] = sizes.map(({ name }) => name);
+
+  const addProductToCart = (): void => {
+    dispatch(
+      addItemAction({
+        title,
+        imageUrl,
+        id,
+        size: selectedSize,
+        price,
+      })
+    );
+  };
 
   return (
     <div className="container">
@@ -50,6 +64,7 @@ const ProductDetailsPage = (): React.ReactElement | null => {
               classes={{ root: 'product-details__btn' }}
               variant="contained"
               color="primary"
+              onClick={addProductToCart}
             >
               Add to cart
             </Button>

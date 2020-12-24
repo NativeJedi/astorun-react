@@ -1,0 +1,13 @@
+@import 'src/assets/styles/tools/tools';
+
+.app-quantity-control {
+  display: inline-block;
+
+  &__value {
+    margin: 0 5px;
+  }
+
+  &__btn {
+    color: $main-color;
+  }
+}

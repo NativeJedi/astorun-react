@@ -9,11 +9,24 @@
     margin: 0;
     height: 100vh;
     max-height: unset;
+    max-width: 400px;
+    width: 100%;
   }
 
   .app-cart-title {
     background-color: $main-color;
     color: #fff;
     font-weight: 500;
+  }
+
+  .app-cart-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: center;
+    margin: auto 0 20px 0;
   }
 }
