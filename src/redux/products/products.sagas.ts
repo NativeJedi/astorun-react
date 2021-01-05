@@ -1,13 +1,13 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
-import { getProducts } from '../../firebase/firebase.requests';
+import { getProducts } from '../../api/requests';
 import { fetchProductsFailure, fetchProductsSuccess } from './products.actions';
 import { FETCH_PRODUCTS_START } from './products.types';
 
 function* fetchProducts() {
   try {
-    const products = yield call(getProducts);
+    const { data } = yield call(getProducts, { page: 1 });
 
-    yield put(fetchProductsSuccess(products));
+    yield put(fetchProductsSuccess(data));
   } catch (e) {
     yield put(fetchProductsFailure(e));
     throw new Error(e);

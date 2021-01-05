@@ -21,7 +21,7 @@ export const selectCartTotal: Selector<RootState, number> = createSelector(
   [selectCartItems],
   (cartItemEntries) => {
     const totalPrice = cartItemEntries.reduce(
-      (total, [, { price, quantity }]) => total + price * quantity,
+      (total, [, { price, quantity }]) => total + Number(price) * quantity,
       0
     );
 

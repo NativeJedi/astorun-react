@@ -1,9 +1,11 @@
 import {
   ADD_ITEM,
   CHANGE_ITEM_QUANTITY,
+  CLEAR_CART,
   IAddItemAction,
   IChangeItemQuantityAction,
   IChangeItemQuantityPayload,
+  IClearCartAction,
   IItemToAdd,
   IRemoveCartItemAction,
   IToggleCartAction,
@@ -32,4 +34,8 @@ export const removeCartItemAction = (
 ): IRemoveCartItemAction => ({
   type: REMOVE_CART_ITEM,
   payload: cartItemId,
+});
+
+export const clearCartAction = (): IClearCartAction => ({
+  type: CLEAR_CART,
 });

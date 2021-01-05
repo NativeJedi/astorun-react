@@ -1,13 +1,16 @@
+import { IProductSize } from '../products/products.types';
+
 export const TOGGLE_CART = 'TOGGLE_CART';
 export const ADD_ITEM = 'ADD_ITEM';
 export const CHANGE_ITEM_QUANTITY = 'CHANGE_ITEM_QUANTITY';
 export const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
+export const CLEAR_CART = 'CLEAR_CART';
 
 export type IItemToAdd = {
   id: string;
-  title: string;
+  name: string;
   imageUrl: string;
-  size: string;
+  selectedSize: IProductSize;
   price: number;
 };
 
@@ -51,8 +54,13 @@ export interface IRemoveCartItemAction {
   payload: string;
 }
 
+export interface IClearCartAction {
+  type: typeof CLEAR_CART;
+}
+
 export type CartActionTypes =
   | IToggleCartAction
   | IAddItemAction
   | IRemoveCartItemAction
-  | IChangeItemQuantityAction;
+  | IChangeItemQuantityAction
+  | IClearCartAction;

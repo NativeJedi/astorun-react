@@ -1,24 +1,52 @@
-import { IError } from '../../types/error.type';
+import { IError } from '../../types/error.types';
+
+interface IProductGender {
+  id: string;
+  name: string;
+}
 
 export interface IProductImage {
   url: string;
+  isMain: boolean;
 }
 
-export interface ISize {
+interface IProductLabel {
+  id: string;
   name: string;
-  count: number;
 }
 
-export type TProductImages = IProductImage[];
+interface IProductSeason {
+  id: string;
+  name: string;
+}
+
+type TProductImages = IProductImage[];
+
+export interface IProductSize {
+  id: string;
+  count: number;
+  name: string;
+}
+
+export type TProductSizes = IProductSize[];
 
 export interface IProduct {
+  collection: string;
   id: string;
-  price: number;
-  title: string;
-  imageUrl: string;
-  sizes: ISize[];
-  images: TProductImages;
+  gender: IProductGender;
+  image: IProductImage;
+  inStock: boolean;
+  label: IProductLabel;
+  name: string;
+  oldPrice: string;
+  price: string;
+  season: IProductSeason;
+}
+
+export interface IProductDetails extends IProduct {
   description: string;
+  images: TProductImages;
+  sizes: TProductSizes;
 }
 
 export type TProducts = IProduct[];

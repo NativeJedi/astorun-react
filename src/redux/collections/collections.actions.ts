@@ -1,4 +1,4 @@
-import { IError } from '../../types/error.type';
+import { IError } from '../../types/error.types';
 import {
   FETCH_COLLECTIONS_FAILURE,
   FETCH_COLLECTIONS_START,

@@ -1,4 +1,4 @@
-import { IError } from '../../types/error.type';
+import { IError } from '../../types/error.types';
 import {
   FETCH_PRODUCTS_FAILURE,
   FETCH_PRODUCTS_START,

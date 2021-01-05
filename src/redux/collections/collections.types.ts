@@ -1,11 +1,11 @@
-import { IError } from '../../types/error.type';
+import { IError } from '../../types/error.types';
 
 export const FETCH_COLLECTIONS_START = 'FETCH_COLLECTIONS_START';
 export const FETCH_COLLECTIONS_SUCCESS = 'FETCH_COLLECTIONS_SUCCESS';
 export const FETCH_COLLECTIONS_FAILURE = 'FETCH_COLLECTIONS_FAILURE';
 
 export interface ICollectionItem {
-  imageUrl: string;
+  image: string;
   name: string;
   id: string;
 }

@@ -1,5 +1,5 @@
 import { put, takeLatest, call, all } from 'redux-saga/effects';
-import { getCollections } from '../../firebase/firebase.requests';
+import { getCollections } from '../../api/requests';
 import {
   fetchCollectionsFailure,
   fetchCollectionsSuccess,
@@ -8,9 +8,9 @@ import { FETCH_COLLECTIONS_START } from './collections.types';
 
 function* fetchCollections() {
   try {
-    const collections = yield call(getCollections);
+    const { data } = yield call(getCollections);
 
-    yield put(fetchCollectionsSuccess(collections));
+    yield put(fetchCollectionsSuccess(data));
   } catch (e) {
     yield put(fetchCollectionsFailure(e));
     throw new Error(e);

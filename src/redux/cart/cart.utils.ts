@@ -1,7 +1,7 @@
 import { ICartItems, IItemToAdd } from './cart.types';
 
 // Every cart item with different size is different cart item
-const getCartItemId = ({ id, size }: IItemToAdd): string => `${id}-${size}`;
+const getCartItemId = ({ selectedSize }: IItemToAdd): string => selectedSize.id;
 
 const increaseItemQuantity = (
   itemId: string,
@@ -56,7 +56,6 @@ export const changeItemQuantity = (
 ): ICartItems => {
   const cartItem = cartItems[cartItemId];
   const { quantity } = cartItem;
-  console.log('cartItem, changedQuantity:', cartItem, changedQuantity);
   const isDecrease = cartItem.quantity > changedQuantity;
 
   if (isDecrease && quantity === 1) {

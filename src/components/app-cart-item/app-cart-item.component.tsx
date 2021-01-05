@@ -16,20 +16,22 @@ const AppCartItem = ({
   onQuantityChange,
   onRemove,
 }: AppCartItemProps): React.ReactElement => {
-  const { imageUrl, title, price, quantity, size } = item;
+  const { imageUrl, name, price, quantity, selectedSize } = item;
 
   return (
     <Card classes={{ root: 'app-cart-item' }}>
       <CardMedia
         classes={{ root: 'app-cart-item__image' }}
         image={imageUrl}
-        title={title}
+        title={name}
       />
       <div className="app-cart-item__details">
-        <h4 className="app-cart-item__title">{title}</h4>
+        <h4 className="app-cart-item__title">{name}</h4>
         <div className="app-cart-item__details-row">
           <div className="app-cart-item__details-label">Size:</div>
-          <div className="app-cart-item__details-value">{size}</div>
+          <div className="app-cart-item__details-value">
+            {selectedSize.name}
+          </div>
         </div>
         <div className="app-cart-item__details-row">
           <div className="app-cart-item__details-label">Price:</div>

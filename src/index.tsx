@@ -5,8 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './i18n/i18n';
 import './assets/styles/layout/main.scss';
+import { PersistGate } from 'redux-persist/integration/react';
 import App from './App';
-import store from './redux/store';
+import { persistor, store } from './redux/store';
 import reportWebVitals from './reportWebVitals';
 
 const theme = createMuiTheme({
@@ -20,9 +21,11 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+      <PersistGate persistor={persistor}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </PersistGate>
     </Provider>
   </BrowserRouter>,
   document.getElementById('root')

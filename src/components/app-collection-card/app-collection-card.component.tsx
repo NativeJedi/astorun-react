@@ -11,7 +11,7 @@ interface ICollectionItemProps {
 const AppCollectionCard = ({
   item,
 }: ICollectionItemProps): React.ReactElement => {
-  const { name, imageUrl } = item;
+  const { name, image } = item;
   const match = useRouteMatch();
   const redirectUrl = `${match.path}/${name}`;
   const { t } = useTranslation();
@@ -21,7 +21,7 @@ const AppCollectionCard = ({
       <div className="collection-item">
         <div
           className="collection-item__background"
-          style={{ backgroundImage: `url(${imageUrl})` }}
+          style={{ backgroundImage: `url(${image})` }}
         />
 
         <div className="collection-item__content">

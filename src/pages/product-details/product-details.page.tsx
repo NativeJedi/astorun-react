@@ -1,47 +1,62 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
+import { useRouteMatch } from 'react-router-dom';
+import { getProductById } from '../../api/requests';
 import AppCarousel from '../../components/app-carousel/app-carousel.component';
 import AppSelect from '../../components/app-select/app-select.component';
-import { getProducts } from '../../firebase/firebase.requests';
 import { addItemAction } from '../../redux/cart/cart.actions';
-import { IProduct } from '../../redux/products/products.types';
+import {
+  IProductDetails,
+  IProductSize,
+} from '../../redux/products/products.types';
 import './product-details.styles.scss';
 
 const ProductDetailsPage = (): React.ReactElement | null => {
-  const [product, setProduct] = useState<IProduct | null>(null);
-  const [selectedSize, setSize] = useState<string>('');
+  const [product, setProduct] = useState<IProductDetails | null>(null);
+  const [selectedSize, setSize] = useState<IProductSize | null>(null);
+  const { params } = useRouteMatch<{ productId: string }>();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getProducts().then(([firstProduct]) => {
-      setProduct(firstProduct);
-      setSize(firstProduct.sizes[0]?.name || '');
+    getProductById(params.productId).then(({ data }) => {
+      setProduct(data);
+      setSize(data.sizes?.[0] || null);
     });
-  }, [setProduct]);
+  }, [params]);
 
   if (!product) return null;
 
-  const { id, imageUrl, title, price, sizes, images, description } = product;
+  const { id, name, price, description, images, sizes } = product;
 
-  const sliderImages: string[] = [imageUrl, ...images.map(({ url }) => url)];
-  const sizeNames: string[] = sizes.map(({ name }) => name);
+  const sliderImages: string[] = images.map(({ url }) => url);
+  const sizeNames: string[] = sizes.map(({ name: productName }) => productName);
 
   const addProductToCart = (): void => {
+    if (!selectedSize) return;
+
     dispatch(
       addItemAction({
-        title,
-        imageUrl,
         id,
-        size: selectedSize,
-        price,
+        selectedSize,
+        name,
+        imageUrl: images.find(({ isMain }) => isMain)!.url,
+        price: Number(price),
       })
     );
   };
 
+  const handleSizeSelect = (selectedSizeName: string) => {
+    const changedSize = sizes.find(
+      ({ name: sizeName }) => selectedSizeName === sizeName
+    );
+
+    setSize(changedSize!);
+  };
+
   return (
     <div className="container">
-      <h1 className="main-title">{title}</h1>
+      <h1 className="main-title">{name}</h1>
 
       <main className="product-details">
         <AppCarousel images={sliderImages} />
@@ -54,8 +69,8 @@ const ProductDetailsPage = (): React.ReactElement | null => {
               <AppSelect
                 id="size-select"
                 items={sizeNames}
-                onChange={(size) => setSize(size)}
-                value={selectedSize}
+                onChange={handleSizeSelect}
+                value={selectedSize?.name || ''}
                 label="Size"
               />
             </div>

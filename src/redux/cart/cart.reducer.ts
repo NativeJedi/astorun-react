@@ -2,6 +2,7 @@ import {
   ADD_ITEM,
   CartActionTypes,
   CHANGE_ITEM_QUANTITY,
+  CLEAR_CART,
   ICartState,
   REMOVE_CART_ITEM,
   TOGGLE_CART,
@@ -48,6 +49,11 @@ const cartReducer = (
       return {
         ...state,
         items: removeItemFromCart(action.payload, state.items),
+      };
+
+    case CLEAR_CART:
+      return {
+        ...INITIAL_STATE,
       };
 
     default:

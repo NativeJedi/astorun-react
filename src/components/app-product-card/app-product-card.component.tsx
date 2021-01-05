@@ -19,7 +19,7 @@ interface ICardProps {
 }
 
 const AppProductCard = ({ product }: ICardProps): React.ReactElement => {
-  const { title, imageUrl, price, id } = product;
+  const { name, image, price, id } = product;
   const path = ProductDetailsRoute.getPath!(id);
 
   return (
@@ -28,14 +28,14 @@ const AppProductCard = ({ product }: ICardProps): React.ReactElement => {
         <CardActionArea>
           <CardMedia
             className="app-product-card__media"
-            image={imageUrl}
-            title={title}
+            image={image.url}
+            title={name}
           />
         </CardActionArea>
 
         <CardContent className="app-product-card__content">
           <div className="app-product-card__info">
-            <h4 className="app-product-card__title">{title}</h4>
+            <h4 className="app-product-card__title">{name}</h4>
             <span className="app-product-card__price">{price}</span>
           </div>
         </CardContent>
