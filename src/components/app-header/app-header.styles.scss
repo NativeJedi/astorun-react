@@ -17,6 +17,9 @@
   &__container {
     @extend %flex-ac;
     line-height: 16px;
+    @media only screen and (max-width: 767px) {
+      justify-content: space-between;
+    }
   }
 
   &__languages {
@@ -29,7 +32,7 @@
     }
 
     @media only screen and (max-width : 767px) {
-      margin-bottom: 30px;
+      margin: auto auto 20px auto;
     }
   }
 }
@@ -40,18 +43,14 @@
   &__img {
     max-width: 100%;
   }
-  @media only screen  and (max-width : 767px) {
-    order: 1;
-  }
 }
 
 .nav {
   margin-left: 60px;
   text-transform: uppercase;
   font-weight: 500;
-
   @media only screen and (max-width : 767px) {
-    margin: auto 0;
+    margin: 20px 0 0 0;
     font-weight: bold;
   }
   &__list {
@@ -59,7 +58,6 @@
     @media only screen and (max-width : 767px) {
       flex-direction: column;
       text-align: center;
-      color: #fff;
     }
   }
   &__item {
@@ -73,6 +71,10 @@
   &__link {
     display: block;
     padding-bottom: 2px;
+    @media only screen and (max-width: 767px) {
+      font-size: 24px;
+      padding-bottom: 6px;
+    }
     &:hover {
       color: $main-color;
     }
@@ -80,14 +82,6 @@
       color: $main-color;
       border-bottom: 2px solid currentColor;
     }
-  }
-}
-
-.btn-menu {
-  display: none;
-  order: 2;
-  @media only screen and (max-width : 767px) {
-    display: block;
   }
 }
 

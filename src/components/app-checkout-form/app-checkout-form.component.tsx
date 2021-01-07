@@ -2,6 +2,7 @@ import { Button } from '@material-ui/core';
 import { FormApi } from 'final-form';
 import React from 'react';
 import { Form, Field } from 'react-final-form';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { createOrder } from '../../api/requests';
 import { clearCartAction } from '../../redux/cart/cart.actions';
@@ -73,6 +74,7 @@ const AppCheckoutForm = ({
   setLoading,
 }: IAppCheckoutFormProps): React.ReactElement => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const handleOrder = async (
     checkoutFormValues: ICheckoutFormValues,
@@ -112,40 +114,60 @@ const AppCheckoutForm = ({
       render={({ handleSubmit }) => (
         <form className="app-checkout-form" onSubmit={handleSubmit}>
           <div className="app-checkout-subtitle">
-            Leave your contacts for us
+            {t('form.checkout.title')}
           </div>
 
           <div className="app-checkout-form__row">
             <Field
               name="firstName"
-              label="First name"
+              label={t('label.first_name')}
               component={AppTextField}
             />
           </div>
 
           <div className="app-checkout-form__row">
-            <Field name="lastName" label="Last name" component={AppTextField} />
+            <Field
+              name="lastName"
+              label={t('label.last_name')}
+              component={AppTextField}
+            />
           </div>
 
           <div className="app-checkout-form__row">
-            <Field name="phone" label="Phone" component={AppPhoneField} />
+            <Field
+              name="phone"
+              label={t('label.phone')}
+              component={AppPhoneField}
+            />
           </div>
 
           <div className="app-checkout-form__row">
-            <Field name="email" label="Email" component={AppTextField} />
+            <Field
+              name="email"
+              label={t('label.email')}
+              component={AppTextField}
+            />
           </div>
 
           <div className="app-checkout-form__row">
-            <Field name="delAddress" label="Address" component={AppTextField} />
+            <Field
+              name="delAddress"
+              label={t('label.address')}
+              component={AppTextField}
+            />
           </div>
 
           <div className="app-checkout-form__row">
-            <Field name="delCity" label="City" component={AppTextField} />
+            <Field
+              name="delCity"
+              label={t('label.city')}
+              component={AppTextField}
+            />
           </div>
 
           <div className="app-checkout-form__footer">
             <Button variant="contained" color="primary" type="submit">
-              Send my order
+              {t('actions.send_my_order')}
             </Button>
           </div>
         </form>

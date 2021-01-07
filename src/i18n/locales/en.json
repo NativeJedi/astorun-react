@@ -1,104 +1,59 @@
 {
   "links": {
     "shop": "Shop",
+    "news": "News",
     "collection": "Collection",
     "contacts": "Contacts",
-    "mainpage": "Main page",
-    "tomain": "To main page",
-    "news": "News",
-    "offer": "Offer",
+    "faq": "FAQ",
     "rules": "Rules",
     "partner": "Partnership",
-    "faq": "FAQ"
+    "offer": "Offer"
   },
-  "shop": {
-    "title": "Out goods"
-  },
-  "news": {
-    "title": "News",
-    "load": "Load news",
-    "more": "more",
-    "placehoder": "No news, sorry...",
-    "navigation": {
-      "next": "Next",
-      "prev": "Previous",
-      "back": "Back",
-      "to": "to news"
+  "page": {
+    "shop": {
+      "title": "Our collections"
+    },
+    "products": {
+      "title": "Our products"
+    },
+    "cart": {
+      "title": "The goods in your cart",
+      "placeholder": "There are no goods in your cart yet"
+    },
+    "checkout": {
+      "title": "Checkout",
+      "total": "Total"
     }
   },
-  "collection": {
-    "title": "Collection",
-    "tobasket": "To basket"
-  },
-  "contacts": {
-    "title": "Our contacts",
-    "mail": "Mail",
-    "phone": "Phone",
-    "telegram": "Telegram",
-    "viber": "Viber",
-    "messanger": "Facebook Messanger"
-  },
-  "product": {
-    "buy": "Buy",
-    "navigation": {
-      "next": "Next",
-      "prev": "Previous",
-      "back": "Back"
-    },
-    "tobasket": "To basket"
-  },
-  "basket": {
-    "title": "Your goods",
-    "size": "Size",
-    "price": "Price",
-    "quant": "Quantity",
-    "total": "Total",
-    "placeholder": "In your basket no goods yet...",
-    "toshop": "To shop",
-    "tocollection": "To collection",
-    "livecontacts": "Live your contacts"
-  },
-  "thanks": {
-    "thanks": "Thank you for your buying!",
-    "more": "Need something else?"
-  },
-  "buttons": {
-    "description": "description",
-    "look": "look",
-    "buy": "Buy",
-    "menu": "Menu",
-    "close": "Close",
-    "order": "Order",
-    "back": "Back",
-    "submit": "Submit"
-  },
-  "placeholders": {
-    "mail": "Input your mail",
-    "phone": "Input your phone",
-    "message": "Input your message",
-    "name": "Input your name"
-  },
-  "filters": {
-    "hat": "Hats",
-    "sweetshot": "Sweetshots",
-    "pants": "Pants"
-  },
   "collections": {
-    "mens": "Men's",
-    "womens": "Women's",
-    "kids": "Kids",
     "hats": "Hats",
-    "sweatshirts": "Sweatshirts",
-    "pants": "Pants"
+    "mens": "Men's"
   },
-  "form": {
-    "iagree": "I agree with",
-    "agreement": "data processing rules"
+  "actions": {
+    "shop_now": "Shop now",
+    "add_to_cart": "ADd to cart",
+    "go_to_checkout": "Go to checkout",
+    "go_shop": "Go shop",
+    "send_my_order": "Send my order"
   },
   "label": {
-    "size": "Size"
+    "size": "Size",
+    "price": "Price",
+    "quantity": "Quantity",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "city": "City"
   },
-  "placeholder": {
-    "products": "There are no goods by your request"
+  "form": {
+    "checkout": {
+      "title": "Leave your contacts for us"
+    }
+  },
+  "error": {
+    "is_required": "The field is required",
+    "invalid_email": "Invalid email"
   }
 }

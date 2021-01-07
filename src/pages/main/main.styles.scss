@@ -16,11 +16,13 @@
 }
 
 .main-nav {
-  margin-top: 60px;
+  margin: 60px auto 30px auto;
   font-size: 24px;
   font-weight: bold;
   font-style: italic;
-
+  @media only screen and (max-width: 767px) {
+    margin: 30px auto;
+  }
   &__link {
     display: block;
     padding: 5px 0;

@@ -26,7 +26,9 @@ const AppCollectionCard = ({
 
         <div className="collection-item__content">
           <h4 className="collection-item__title">{t(`collections.${name}`)}</h4>
-          <div className="collection-item__subtitle">SHOP NOW</div>
+          <div className="collection-item__subtitle">
+            {t('actions.shop_now')}
+          </div>
         </div>
       </div>
     </Link>

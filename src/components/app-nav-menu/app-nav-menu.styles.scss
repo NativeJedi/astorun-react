@@ -1,0 +1,35 @@
+.app-nav-menu {
+  flex: 1;
+  @media only screen and (max-width: 767px) {
+    order: 1;
+    flex: unset;
+  }
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    @media only screen and (max-width: 767px) {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: calc(100vh - 75px);
+      transform: translateX(-100%);
+      background-color: #fff;
+      flex-direction: column;
+      transition: transform .3s;
+      z-index: 20;
+      &.is-opened {
+        transform: translateX(0);
+      }
+    }
+  }
+  &__btn {
+    &.MuiButtonBase-root {
+      display: none;
+
+      @media only screen and (max-width: 767px) {
+        display: flex;
+      }
+    }
+  }
+}

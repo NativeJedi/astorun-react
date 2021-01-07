@@ -8,6 +8,7 @@ import './app-header.styles.scss';
 import { toggleCartAction } from '../../redux/cart/cart.actions';
 import AppLocales from '../app-locales/app-locales.component';
 import Logo from '../../assets/images/logo1.png';
+import AppNavMenu from '../app-nav-menu/app-nav-menu.component';
 
 interface INavLink {
   path: string;
@@ -34,31 +35,35 @@ const AppHeader: React.FC = () => {
           <img className="logo__img" src={Logo} alt="astorun" />
         </Link>
 
-        <nav className="nav">
-          <ul className="nav__list">
-            {navigation.map((link) => (
-              <li key={link.path} className="nav__item">
-                <NavLink
-                  activeClassName="is-active"
-                  className="nav__link"
-                  to={link.path}
-                >
-                  {t(link.text)}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <AppNavMenu>
+          <>
+            <nav className="nav">
+              <ul className="nav__list">
+                {navigation.map((link) => (
+                  <li key={link.path} className="nav__item">
+                    <NavLink
+                      activeClassName="is-active"
+                      className="nav__link"
+                      to={link.path}
+                    >
+                      {t(link.text)}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
 
-        <div className="header__languages btn-group">
-          <AppLocales />
-        </div>
+            <div className="header__languages btn-group">
+              <AppLocales />
+            </div>
+          </>
+        </AppNavMenu>
 
         <Button
-          className="header__cart"
           color="primary"
           variant="outlined"
           onClick={toggleCart}
+          classes={{ root: 'header__cart' }}
         >
           <ShoppingCartOutlinedIcon color="primary" />
         </Button>

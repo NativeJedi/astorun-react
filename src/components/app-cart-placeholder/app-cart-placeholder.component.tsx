@@ -1,5 +1,6 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { ShopRoute } from '../../routes/index';
 import './app-cart-placeholder.styles.scss';
@@ -11,6 +12,7 @@ interface AppCartPlaceholderProps {
 const AppCartPlaceholder = ({
   onRedirect,
 }: AppCartPlaceholderProps): React.ReactElement => {
+  const { t } = useTranslation();
   const history = useHistory();
 
   const handleRedirect = () => {
@@ -21,7 +23,7 @@ const AppCartPlaceholder = ({
   return (
     <div className="app-cart-placeholder">
       <div className="app-cart-placeholder__text">
-        There are no goods in your cart yet
+        {t('page.cart.placeholder')}
       </div>
 
       <Button
@@ -30,7 +32,7 @@ const AppCartPlaceholder = ({
         color="primary"
         onClick={handleRedirect}
       >
-        Go shop
+        {t('actions.go_shop')}
       </Button>
     </div>
   );

@@ -1,4 +1,8 @@
 .app-carousel {
   width: 400px;
   flex-shrink: 0;
+  @media only screen and (max-width: 767px) {
+    width: 300px;
+    margin: 0 auto;
+  }
 }

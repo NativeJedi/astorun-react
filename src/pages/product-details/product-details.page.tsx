@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import { getProductById } from '../../api/requests';
@@ -17,6 +18,7 @@ const ProductDetailsPage = (): React.ReactElement | null => {
   const [selectedSize, setSize] = useState<IProductSize | null>(null);
   const { params } = useRouteMatch<{ productId: string }>();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     getProductById(params.productId).then(({ data }) => {
@@ -71,7 +73,7 @@ const ProductDetailsPage = (): React.ReactElement | null => {
                 items={sizeNames}
                 onChange={handleSizeSelect}
                 value={selectedSize?.name || ''}
-                label="Size"
+                label={t('label.size')}
               />
             </div>
 
@@ -81,7 +83,7 @@ const ProductDetailsPage = (): React.ReactElement | null => {
               color="primary"
               onClick={addProductToCart}
             >
-              Add to cart
+              {t('actions.add_to_cart')}
             </Button>
           </div>
 

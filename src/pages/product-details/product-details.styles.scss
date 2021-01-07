@@ -2,9 +2,12 @@
 
 .product-details {
   display: flex;
-
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+  }
   &__info {
     margin-left: 20px;
+    flex: 1;
   }
 
   &__toolbar {
@@ -12,6 +15,10 @@
     align-items: center;
     padding: 20px 0;
     margin-top: auto;
+    @media only screen and (max-width: 767px) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   }
 
   &__price {
@@ -19,15 +26,31 @@
     font-size: 25px;
     font-style: italic;
     color: $main-color;
+    @media only screen and (max-width: 767px) {
+      width: 100%;
+      text-align: center;
+      padding-bottom: 15px;
+    }
   }
 
   &__size-select {
     margin-left: auto;
+    @media only screen and (max-width: 767px) {
+      margin-left: 0;
+      margin-right: 20px;
+    }
   }
 
   &__btn {
     margin-left: 10px;
     padding-top: 15px;
     padding-bottom: 15px;
+    @media only screen and (max-width: 767px) {
+      margin-left: 0;
+    }
+  }
+
+  &__description {
+    text-align: center;
   }
 }

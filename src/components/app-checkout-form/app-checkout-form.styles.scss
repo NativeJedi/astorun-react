@@ -1,6 +1,12 @@
 .app-checkout-form {
   width: 400px;
   margin-right: 40px;
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+    margin-right: 0;
+    order: 1;
+    margin-top: 30px;
+  }
   &__row {
     margin-bottom: 20px;
   }

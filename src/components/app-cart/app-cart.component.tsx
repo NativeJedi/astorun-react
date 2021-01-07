@@ -1,4 +1,5 @@
 import React, { ForwardedRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 // eslint-disable-next-line import/no-unresolved
 import { TransitionProps } from '@material-ui/core/transitions';
@@ -37,6 +38,7 @@ const AppCart: React.FC = () => {
   const cartItemsEntries = useSelector(selectCartItems);
   const handleClose = () => dispatch(toggleCartAction());
   const history = useHistory();
+  const { t } = useTranslation();
 
   const handleCheckoutRedirect = (): void => {
     history.push(CHECKOUT_ROUTE);
@@ -49,8 +51,8 @@ const AppCart: React.FC = () => {
       keepMounted
       TransitionComponent={Transition}
       onClose={handleClose}
-      aria-labelledby="Your cart"
-      aria-describedby="The goods in your cart"
+      aria-labelledby={t('page.cart.title')}
+      aria-describedby={t('page.cart.title')}
       classes={{
         root: 'app-cart',
         scrollPaper: 'app-cart-overlay',
@@ -61,7 +63,7 @@ const AppCart: React.FC = () => {
         classes={{ root: 'app-cart-title' }}
         id="alert-dialog-slide-title"
       >
-        The goods in your cart
+        {t('page.cart.title')}
       </DialogTitle>
       <DialogContent classes={{ root: 'app-cart-content' }}>
         <AppCartItems cartItems={cartItemsEntries} />
@@ -75,7 +77,7 @@ const AppCart: React.FC = () => {
               color="primary"
               onClick={handleCheckoutRedirect}
             >
-              Go to checkout
+              {t('actions.go_to_checkout')}
             </Button>
           </footer>
         ) : (

@@ -1,5 +1,6 @@
 import { CardMedia, Card } from '@material-ui/core';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ICartItem } from '../../redux/cart/cart.types';
 import './app-cart-item.styles.scss';
 import AppBtnClose from '../app-btn-close/app-btn-close.component';
@@ -17,6 +18,7 @@ const AppCartItem = ({
   onRemove,
 }: AppCartItemProps): React.ReactElement => {
   const { imageUrl, name, price, quantity, selectedSize } = item;
+  const { t } = useTranslation();
 
   return (
     <Card classes={{ root: 'app-cart-item' }}>
@@ -28,17 +30,21 @@ const AppCartItem = ({
       <div className="app-cart-item__details">
         <h4 className="app-cart-item__title">{name}</h4>
         <div className="app-cart-item__details-row">
-          <div className="app-cart-item__details-label">Size:</div>
+          <div className="app-cart-item__details-label">{t('label.size')}:</div>
           <div className="app-cart-item__details-value">
             {selectedSize.name}
           </div>
         </div>
         <div className="app-cart-item__details-row">
-          <div className="app-cart-item__details-label">Price:</div>
+          <div className="app-cart-item__details-label">
+            {t('label.price')}:
+          </div>
           <div className="app-cart-item__details-value">{price}</div>
         </div>
         <div className="app-cart-item__details-row">
-          <div className="app-cart-item__details-label">Quantity:</div>
+          <div className="app-cart-item__details-label">
+            {t('label.quantity')}:
+          </div>
           <div className="app-cart-item__details-value">
             <AppQuantityControl value={quantity} onChange={onQuantityChange} />
           </div>
