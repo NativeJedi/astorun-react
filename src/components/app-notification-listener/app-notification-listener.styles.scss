@@ -1,0 +1,11 @@
+.app-notification {
+  position: fixed;
+  max-width: 340px;
+  right: 10px;
+  top: 85px;
+  z-index: 100;
+
+  &__item {
+    margin-bottom: 10px;
+  }
+}

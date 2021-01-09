@@ -6,7 +6,7 @@ export interface IWithLoaderProps {
   setLoading: (isLoading: boolean) => void;
 }
 
-const withLoader = <P,>(
+const withLoader = <P extends IWithLoaderProps>(
   Inner: React.ComponentType<P>
 ): React.FC<P & IWithLoaderProps> => {
   // eslint-disable-next-line no-param-reassign
@@ -18,7 +18,10 @@ const withLoader = <P,>(
     return (
       <>
         {isLoading && <Spinner />}
-        <div style={isLoading ? { display: 'none' } : {}}>
+        <div
+          className="flex-container"
+          style={isLoading ? { display: 'none' } : {}}
+        >
           <Inner {...props} isLoading={isLoading} setLoading={setLoading} />
         </div>
       </>

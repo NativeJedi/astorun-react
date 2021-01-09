@@ -1,3 +1,4 @@
+import { IGetProductsParams } from '../../api/params.types';
 import { IError } from '../../types/error.types';
 import {
   FETCH_PRODUCTS_FAILURE,
@@ -9,8 +10,11 @@ import {
   TProducts,
 } from './products.types';
 
-export const fetchProductsStart = (): FetchProductsStartAction => ({
+export const fetchProductsStart = (
+  params: IGetProductsParams
+): FetchProductsStartAction => ({
   type: FETCH_PRODUCTS_START,
+  payload: params,
 });
 
 export const fetchProductsSuccess = (

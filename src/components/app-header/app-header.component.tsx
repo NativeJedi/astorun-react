@@ -1,14 +1,11 @@
 import React from 'react';
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
-import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import './app-header.styles.scss';
-import { toggleCartAction } from '../../redux/cart/cart.actions';
 import AppLocales from '../app-locales/app-locales.component';
 import Logo from '../../assets/images/logo1.png';
 import AppNavMenu from '../app-nav-menu/app-nav-menu.component';
+import AppOpenCartBtn from '../app-open-cart-btn/app-open-cart-btn.component';
 
 interface INavLink {
   path: string;
@@ -24,9 +21,6 @@ const navigation: INavLink[] = [
 
 const AppHeader: React.FC = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-
-  const toggleCart = () => dispatch(toggleCartAction());
 
   return (
     <header className="header">
@@ -59,14 +53,7 @@ const AppHeader: React.FC = () => {
           </>
         </AppNavMenu>
 
-        <Button
-          color="primary"
-          variant="outlined"
-          onClick={toggleCart}
-          classes={{ root: 'header__cart' }}
-        >
-          <ShoppingCartOutlinedIcon color="primary" />
-        </Button>
+        <AppOpenCartBtn />
       </div>
     </header>
   );

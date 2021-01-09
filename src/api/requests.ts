@@ -1,20 +1,12 @@
 /* eslint-disable camelcase */
-import { AxiosResponse } from 'axios';
+import { TResponse, IGetProductsParams } from './params.types';
 import { TCollections } from '../redux/collections/collections.types';
 import { IProductDetails, TProducts } from '../redux/products/products.types';
 import { IOrder } from '../types/order.types';
 import api from './api';
 
-type TResponse<D> = Promise<AxiosResponse<D>>;
-
 export const getCollections = (): TResponse<TCollections> =>
   api.get('/collection/collection');
-
-export interface IGetProductsParams {
-  page: number;
-  pageSize?: number;
-  collection?: string;
-}
 
 export const getProducts = (params: IGetProductsParams): TResponse<TProducts> =>
   api.get('/product/product/', { params });

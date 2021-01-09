@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import AppNotificationListener from './components/app-notification-listener/app-notification-listener.component';
 import ErrorBoundary from './components/error-boundary/error-boundary.component';
 import Spinner from './components/spinner/spinner.component';
 import MainLayout from './layouts/main/main.layout';
@@ -35,6 +36,7 @@ const App: React.FC = () => (
         </Suspense>
       </ErrorBoundary>
     </Switch>
+    <AppNotificationListener />
   </div>
 );
 

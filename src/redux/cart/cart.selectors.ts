@@ -17,6 +17,13 @@ export const selectCartItems: Selector<
   Object.entries(cart.items)
 );
 
+export const selectCartItemsQuantity: Selector<
+  RootState,
+  number
+> = createSelector([selectCartItems], (cartItemEntries) =>
+  cartItemEntries.reduce((total, [, { quantity }]) => total + quantity, 0)
+);
+
 export const selectCartTotal: Selector<RootState, number> = createSelector(
   [selectCartItems],
   (cartItemEntries) => {

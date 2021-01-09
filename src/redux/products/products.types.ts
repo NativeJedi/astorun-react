@@ -1,3 +1,4 @@
+import { IGetProductsParams } from '../../api/params.types';
 import { IError } from '../../types/error.types';
 
 interface IProductGender {
@@ -66,6 +67,7 @@ export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
 
 export interface FetchProductsStartAction {
   type: typeof FETCH_PRODUCTS_START;
+  payload: IGetProductsParams;
 }
 
 export interface FetchProductsSuccessAction {

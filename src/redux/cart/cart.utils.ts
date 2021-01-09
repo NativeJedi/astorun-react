@@ -1,3 +1,5 @@
+import { TStoredCartItems } from '../../types/storage.types';
+import { IProductDetails } from '../products/products.types';
 import { ICartItems, IItemToAdd } from './cart.types';
 
 // Every cart item with different size is different cart item
@@ -69,4 +71,34 @@ export const changeItemQuantity = (
       quantity: changedQuantity,
     },
   };
+};
+
+export const formCartItems = (
+  storedCartItems: TStoredCartItems,
+  products: IProductDetails[]
+): ICartItems => {
+  return storedCartItems.reduce(
+    (cartItemsStore, { sizeId, id: productId, quantity }) => {
+      const product = products.find(({ id }) => productId === id);
+
+      if (!product) {
+        return cartItemsStore;
+      }
+
+      const selectedSize = product.sizes.find(({ id }) => id === sizeId);
+
+      if (!selectedSize) {
+        return cartItemsStore;
+      }
+
+      return {
+        [sizeId]: {
+          ...product,
+          selectedSize,
+          quantity,
+        },
+      };
+    },
+    {}
+  );
 };

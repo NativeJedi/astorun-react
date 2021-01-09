@@ -1,16 +1,37 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
-import { getProducts } from '../../api/requests';
+import { getCollections, getProducts } from '../../api/requests';
+import { ERROR_NOTIFICATION } from '../../constants/notifications.constants';
+import { ICollectionItem } from '../collections/collections.types';
+import { addNotification } from '../notifications/notifications.actions';
 import { fetchProductsFailure, fetchProductsSuccess } from './products.actions';
-import { FETCH_PRODUCTS_START } from './products.types';
+import {
+  FETCH_PRODUCTS_START,
+  FetchProductsStartAction,
+} from './products.types';
 
-function* fetchProducts() {
+function* fetchProducts({ payload }: FetchProductsStartAction) {
   try {
-    const { data } = yield call(getProducts, { page: 1 });
+    // TODO: Add collection name to search products params
+    const { data: collections } = yield call(getCollections);
+
+    const collection = collections.find(
+      ({ name }: ICollectionItem) => name === payload.collection
+    );
+
+    const { data } = yield call(getProducts, {
+      ...payload,
+      collection: collection?.id,
+    });
 
     yield put(fetchProductsSuccess(data));
   } catch (e) {
     yield put(fetchProductsFailure(e));
-    throw new Error(e);
+    yield put(
+      addNotification({
+        type: ERROR_NOTIFICATION,
+        message: e.message,
+      })
+    );
   }
 }
 

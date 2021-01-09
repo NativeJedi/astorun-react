@@ -1,0 +1,18 @@
+@import 'src/assets/styles/tools/tools';
+
+.products-page {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.products-container {
+  @extend %flex-dc;
+  flex: 1;
+}
+
+.products-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+}

@@ -1,4 +1,4 @@
-import React, { ForwardedRef } from 'react';
+import React, { ForwardedRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 // eslint-disable-next-line import/no-unresolved
@@ -11,12 +11,19 @@ import {
   Button,
 } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCartAction } from '../../redux/cart/cart.actions';
+import { CART_ITEMS_STORAGE_KEY } from '../../constants/cart.constants';
+import {
+  loadCartStartAction,
+  toggleCartAction,
+} from '../../redux/cart/cart.actions';
 import {
   selectCartIsOpened,
   selectCartItems,
 } from '../../redux/cart/cart.selectors';
 import './app-cart.styles.scss';
+import { TCartItemsEntries } from '../../redux/cart/cart.types';
+import LocalStorageService from '../../services/local-storage.service';
+import AppBtnClose from '../app-btn-close/app-btn-close.component';
 import AppCartItems from '../app-cart-items/app-cart-items.component';
 import { CheckoutRoute } from '../../routes/index';
 import AppCartPlaceholder from '../app-cart-placeholder/app-cart-placeholder.component';
@@ -32,6 +39,16 @@ const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
 
 const CHECKOUT_ROUTE = CheckoutRoute.getPath();
 
+const saveCartItems = (cartItemsEntries: TCartItemsEntries): void => {
+  const cartItems = cartItemsEntries.map(([sizeId, { id, quantity }]) => ({
+    sizeId,
+    id,
+    quantity,
+  }));
+
+  LocalStorageService.setItem(CART_ITEMS_STORAGE_KEY, cartItems);
+};
+
 const AppCart: React.FC = () => {
   const dispatch = useDispatch();
   const isOpened: boolean = useSelector(selectCartIsOpened);
@@ -44,6 +61,14 @@ const AppCart: React.FC = () => {
     history.push(CHECKOUT_ROUTE);
     handleClose();
   };
+
+  useEffect(() => {
+    dispatch(loadCartStartAction());
+  }, [dispatch]);
+
+  useEffect(() => {
+    saveCartItems(cartItemsEntries);
+  }, [cartItemsEntries]);
 
   return (
     <Dialog
@@ -63,7 +88,8 @@ const AppCart: React.FC = () => {
         classes={{ root: 'app-cart-title' }}
         id="alert-dialog-slide-title"
       >
-        {t('page.cart.title')}
+        <span className="app-cart-title__text">{t('page.cart.title')}</span>
+        <AppBtnClose className="app-cart__close" onClick={handleClose} />
       </DialogTitle>
       <DialogContent classes={{ root: 'app-cart-content' }}>
         <AppCartItems cartItems={cartItemsEntries} />

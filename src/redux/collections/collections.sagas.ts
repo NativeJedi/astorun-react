@@ -1,5 +1,7 @@
 import { put, takeLatest, call, all } from 'redux-saga/effects';
 import { getCollections } from '../../api/requests';
+import { ERROR_NOTIFICATION } from '../../constants/notifications.constants';
+import { addNotification } from '../notifications/notifications.actions';
 import {
   fetchCollectionsFailure,
   fetchCollectionsSuccess,
@@ -13,7 +15,12 @@ function* fetchCollections() {
     yield put(fetchCollectionsSuccess(data));
   } catch (e) {
     yield put(fetchCollectionsFailure(e));
-    throw new Error(e);
+    yield put(
+      addNotification({
+        type: ERROR_NOTIFICATION,
+        message: e.message,
+      })
+    );
   }
 }
 

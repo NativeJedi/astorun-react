@@ -1,12 +1,12 @@
 const LocalStorageService = {
-  getItem(key: string): string | null {
+  getItem<T = unknown>(key: string): T | null {
     const item = localStorage.getItem(key);
 
-    if (item) {
-      return JSON.parse(item);
+    if (!item) {
+      return null;
     }
 
-    return item;
+    return JSON.parse(item);
   },
 
   setItem(key: string, value: unknown): void {

@@ -14,7 +14,8 @@
       "title": "Our collections"
     },
     "products": {
-      "title": "Our products"
+      "title": "Our products",
+      "no_products": "Sorry, we have no products in this collection"
     },
     "cart": {
       "title": "The goods in your cart",

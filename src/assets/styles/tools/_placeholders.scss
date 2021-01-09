@@ -31,6 +31,11 @@
   align-items: center;
 }
 
+%flex-dc {
+  @extend %flex;
+  flex-direction: column;
+}
+
 %stretch {
   top: 0;
   left: 0;

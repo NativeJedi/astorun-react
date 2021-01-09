@@ -14,6 +14,7 @@
   }
 
   .app-cart-title {
+    position: relative;
     background-color: $main-color;
     color: #fff;
     font-weight: 500;
@@ -28,5 +29,15 @@
     display: flex;
     justify-content: center;
     margin: auto 0 20px 0;
+  }
+
+  .app-cart__close {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+
+    &:hover {
+      color: #fff;
+    }
   }
 }

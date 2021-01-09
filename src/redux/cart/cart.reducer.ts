@@ -4,6 +4,9 @@ import {
   CHANGE_ITEM_QUANTITY,
   CLEAR_CART,
   ICartState,
+  LOAD_CART_FAILURE,
+  LOAD_CART_START,
+  LOAD_CART_SUCCESS,
   REMOVE_CART_ITEM,
   TOGGLE_CART,
 } from './cart.types';
@@ -16,6 +19,7 @@ import {
 const INITIAL_STATE: ICartState = {
   isOpened: false,
   items: {},
+  isLoading: false,
 };
 
 const cartReducer = (
@@ -27,6 +31,25 @@ const cartReducer = (
       return {
         ...state,
         isOpened: !state.isOpened,
+      };
+
+    case LOAD_CART_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case LOAD_CART_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        items: action.payload,
+      };
+
+    case LOAD_CART_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
       };
 
     case ADD_ITEM:

@@ -15,7 +15,8 @@ const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware];
 
 const persistConfig = {
-  key: 'cart',
+  key: 'root',
+  whitelist: [],
   storage,
 };
 
