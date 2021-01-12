@@ -7,7 +7,7 @@ import {
   FetchProductsFailureAction,
   FetchProductsStartAction,
   FetchProductsSuccessAction,
-  TProducts,
+  FetchProductsSuccessPayload,
 } from './products.types';
 
 export const fetchProductsStart = (
@@ -18,10 +18,10 @@ export const fetchProductsStart = (
 });
 
 export const fetchProductsSuccess = (
-  products: TProducts
+  payload: FetchProductsSuccessPayload
 ): FetchProductsSuccessAction => ({
   type: FETCH_PRODUCTS_SUCCESS,
-  payload: products,
+  payload,
 });
 
 export const fetchProductsFailure = (

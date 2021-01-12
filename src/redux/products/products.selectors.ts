@@ -1,16 +1,21 @@
-import { createSelector } from 'reselect';
+import { createSelector, Selector } from 'reselect';
 import { RootState } from '../root.reducer';
-import { IProductsState } from './products.types';
+import { IProductsState, TProducts } from './products.types';
 
 const selectProductsState = ({ products }: RootState): IProductsState =>
   products;
 
-export const selectProducts = createSelector(
+export const selectProducts: Selector<RootState, TProducts> = createSelector(
   [selectProductsState],
   ({ products }) => products
 );
 
-export const selectProductsLoading = createSelector(
+export const selectProductsPages: Selector<RootState, number> = createSelector(
   [selectProductsState],
-  ({ isLoading }) => isLoading
+  ({ pages }) => pages
 );
+
+export const selectProductsLoading: Selector<
+  RootState,
+  boolean
+> = createSelector([selectProductsState], ({ isLoading }) => isLoading);

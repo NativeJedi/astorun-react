@@ -28,7 +28,8 @@ const productsReducer = (
     case FETCH_PRODUCTS_SUCCESS:
       return {
         ...state,
-        products: action.payload,
+        products: action.payload.products,
+        pages: action.payload.pages,
         isLoading: false,
       };
     case FETCH_PRODUCTS_FAILURE:

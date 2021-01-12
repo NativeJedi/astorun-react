@@ -1,15 +1,25 @@
 /* eslint-disable camelcase */
-import { TResponse, IGetProductsParams } from './params.types';
+import { TResponse, IGetProductsParams, IPaginatedData } from './params.types';
 import { TCollections } from '../redux/collections/collections.types';
 import { IProductDetails, TProducts } from '../redux/products/products.types';
 import { IOrder } from '../types/order.types';
 import api from './api';
 
-export const getCollections = (): TResponse<TCollections> =>
+export type TGetCollectionResponse = TResponse<TCollections>;
+
+export const getCollections = (): TGetCollectionResponse =>
   api.get('/collection/collection');
 
-export const getProducts = (params: IGetProductsParams): TResponse<TProducts> =>
-  api.get('/product/product/', { params });
+export type TProductsData = IPaginatedData<TProducts>;
+
+export const getProducts = ({
+  page,
+  pageSize,
+  collection,
+}: IGetProductsParams): TResponse<TProductsData> =>
+  api.get('/product/product/', {
+    params: { page, collection, page_size: pageSize },
+  });
 
 export const getProductById = (id: string): TResponse<IProductDetails> =>
   api.get(`/product/product/${id}`);

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { fetchProductsStart } from '../../redux/products/products.actions';
 import {
   selectProducts,
   selectProductsLoading,
+  selectProductsPages,
 } from '../../redux/products/products.selectors';
 import './collection-overview.styles.scss';
 
@@ -17,6 +18,7 @@ const CollectionOverviewPage = ({
   setLoading,
 }: IWithLoaderProps): React.ReactElement => {
   const products = useSelector(selectProducts);
+  const pages = useSelector(selectProductsPages);
   const isLoading = useSelector(selectProductsLoading);
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -25,12 +27,21 @@ const CollectionOverviewPage = ({
   } = useRouteMatch<{ collection: string }>();
 
   useEffect(() => {
-    dispatch(fetchProductsStart({ page: 1, collection }));
-  }, [dispatch, collection]);
-
-  useEffect(() => {
     setLoading(isLoading);
   }, [isLoading, setLoading]);
+
+  const handlePageChange = useCallback(
+    ({ page }) => {
+      dispatch(
+        fetchProductsStart({
+          page,
+          collection,
+          pageSize: 1,
+        })
+      );
+    },
+    [dispatch, collection]
+  );
 
   return (
     <div className="container products-container">
@@ -43,7 +54,11 @@ const CollectionOverviewPage = ({
         {!products.length && <AppEmptyProducts />}
       </div>
 
-      <AppPagination count={1} classes={{ root: 'products-pagination' }} />
+      <AppPagination
+        count={pages}
+        classes={{ root: 'products-pagination' }}
+        onChange={handlePageChange}
+      />
     </div>
   );
 };

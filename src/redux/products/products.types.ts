@@ -70,9 +70,14 @@ export interface FetchProductsStartAction {
   payload: IGetProductsParams;
 }
 
+export interface FetchProductsSuccessPayload {
+  products: TProducts;
+  pages: number;
+}
+
 export interface FetchProductsSuccessAction {
   type: typeof FETCH_PRODUCTS_SUCCESS;
-  payload: TProducts;
+  payload: FetchProductsSuccessPayload;
 }
 
 export interface FetchProductsFailureAction {

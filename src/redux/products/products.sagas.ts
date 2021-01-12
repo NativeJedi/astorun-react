@@ -1,5 +1,5 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
-import { getCollections, getProducts } from '../../api/requests';
+import { getCollections, getProducts, TProductsData } from '../../api/requests';
 import { ERROR_NOTIFICATION } from '../../constants/notifications.constants';
 import { ICollectionItem } from '../collections/collections.types';
 import { addNotification } from '../notifications/notifications.actions';
@@ -23,7 +23,14 @@ function* fetchProducts({ payload }: FetchProductsStartAction) {
       collection: collection?.id,
     });
 
-    yield put(fetchProductsSuccess(data));
+    const { count, results } = data as TProductsData;
+
+    yield put(
+      fetchProductsSuccess({
+        pages: count,
+        products: results,
+      })
+    );
   } catch (e) {
     yield put(fetchProductsFailure(e));
     yield put(

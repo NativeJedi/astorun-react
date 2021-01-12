@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import './shop.styles.scss';
 import { useDispatch, useSelector } from 'react-redux';
+import AppEmptyProducts from '../../components/app-empty-products/app-empty-products.component';
 import { fetchCollectionsStart } from '../../redux/collections/collections.actions';
 import AppCollectionCard from '../../components/app-collection-card/app-collection-card.component';
 import {
@@ -33,6 +34,7 @@ const ShopPage = ({ setLoading }: IWithLoaderProps): React.ReactElement => {
           <AppCollectionCard key={item.id} item={item} />
         ))}
       </div>
+      {!collections.length && <AppEmptyProducts />}
     </div>
   );
 };
