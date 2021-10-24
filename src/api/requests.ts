@@ -1,5 +1,9 @@
 /* eslint-disable camelcase */
-import { TResponse, IGetProductsParams, IPaginatedData } from './params.types';
+import {
+  TResponse,
+  IGetProductsParams,
+  IPaginatedData,
+} from './requests.types';
 import { TCollections } from '../redux/collections/collections.types';
 import { IProductDetails, TProducts } from '../redux/products/products.types';
 import { IOrder } from '../types/order.types';
@@ -42,3 +46,6 @@ export const createOrder = ({
     items,
     phone,
   });
+
+export const getProductsByIds = (ids: string[]): unknown =>
+  api.post('/product/product/by-ids/', { ids });

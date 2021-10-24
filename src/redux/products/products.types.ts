@@ -1,4 +1,4 @@
-import { IGetProductsParams } from '../../api/params.types';
+import { IGetProductsParams } from '../../api/requests.types';
 import { IError } from '../../types/error.types';
 
 interface IProductGender {

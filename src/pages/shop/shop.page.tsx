@@ -31,7 +31,7 @@ const ShopPage = ({ setLoading }: IWithLoaderProps): React.ReactElement => {
       <h1 className="main-title">{t('page.shop.title')}</h1>
       <div className="shop-grid">
         {collections.map((item) => (
-          <AppCollectionCard key={item.id} item={item} />
+          <AppCollectionCard key={item.name} item={item} />
         ))}
       </div>
       {!collections.length && <AppEmptyProducts />}

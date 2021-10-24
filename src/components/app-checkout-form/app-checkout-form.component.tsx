@@ -12,7 +12,6 @@ import {
   requiredRule,
   TValidatorConfig,
   handleValidate,
-  composeRules,
   emailRule,
 } from '../../validator/rules';
 import AppTextField from '../app-text-field/app-text-field.component';
@@ -34,12 +33,12 @@ interface IAppCheckoutFormProps {
 }
 
 const validatorConfig: TValidatorConfig = {
-  firstName: requiredRule,
-  lastName: requiredRule,
-  phone: requiredRule,
-  email: composeRules(requiredRule, emailRule),
-  delAddress: requiredRule,
-  delCity: requiredRule,
+  firstName: [requiredRule],
+  lastName: [requiredRule],
+  phone: [requiredRule],
+  email: [requiredRule, emailRule],
+  delAddress: [requiredRule],
+  delCity: [requiredRule],
 };
 
 const formOrder = (

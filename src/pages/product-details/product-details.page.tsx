@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import { getProductById } from '../../api/requests';
 import AppCarousel from '../../components/app-carousel/app-carousel.component';
 import AppSelect from '../../components/app-select/app-select.component';
+import { ERROR_NOTIFICATION } from '../../constants/notifications.constants';
 import { addItemAction } from '../../redux/cart/cart.actions';
+import { addNotification } from '../../redux/notifications/notifications.actions';
 import {
   IProductDetails,
   IProductSize,
 } from '../../redux/products/products.types';
 import './product-details.styles.scss';
+import { ShopRoute } from '../../routes/index';
 
 const ProductDetailsPage = (): React.ReactElement | null => {
   const [product, setProduct] = useState<IProductDetails | null>(null);
@@ -19,13 +22,25 @@ const ProductDetailsPage = (): React.ReactElement | null => {
   const { params } = useRouteMatch<{ productId: string }>();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const history = useHistory();
 
   useEffect(() => {
-    getProductById(params.productId).then(({ data }) => {
-      setProduct(data);
-      setSize(data.sizes?.[0] || null);
-    });
-  }, [params]);
+    getProductById(params.productId)
+      .then(({ data }) => {
+        setProduct(data);
+        setSize(data.sizes?.[0] || null);
+      })
+      .catch(({ message }) => {
+        dispatch(
+          addNotification({
+            type: ERROR_NOTIFICATION,
+            message,
+          })
+        );
+
+        history.replace(ShopRoute.getPath());
+      });
+  }, [params, dispatch, history]);
 
   if (!product) return null;
 

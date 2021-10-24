@@ -1,15 +1,12 @@
-import { AxiosResponse } from 'axios';
 import { all, call, put, takeEvery } from 'redux-saga/effects';
-import { getProductById } from '../../api/requests';
+import { getProductsByIds } from '../../api/requests';
 import { CART_ITEMS_STORAGE_KEY } from '../../constants/cart.constants';
 import { ERROR_NOTIFICATION } from '../../constants/notifications.constants';
 import LocalStorageService from '../../services/local-storage.service';
 import { TStoredCartItems } from '../../types/storage.types';
 import { addNotification } from '../notifications/notifications.actions';
-import { IProductDetails } from '../products/products.types';
 import { loadCartFailureAction, loadCartSuccessAction } from './cart.actions';
 import { LOAD_CART_START } from './cart.types';
-import { formCartItems } from './cart.utils';
 
 function* loadCart() {
   try {
@@ -22,17 +19,16 @@ function* loadCart() {
       return;
     }
 
-    const productsResponses: AxiosResponse<
-      IProductDetails
-    >[] = yield Promise.all(
-      storedCartItems.map(({ id }) => getProductById(id))
-    );
+    const productIds = storedCartItems.map(({ id }) => id);
 
-    const products = productsResponses.map(({ data }) => data);
+    const productsResponses = yield getProductsByIds(productIds);
 
-    const cartItems = formCartItems(storedCartItems, products);
-
-    yield put(loadCartSuccessAction(cartItems));
+    console.log('productsResponses:', productsResponses);
+    // const products = productsResponses.map(({ data }) => data);
+    //
+    // const cartItems = formCartItems(storedCartItems, products);
+    //
+    // yield put(loadCartSuccessAction(cartItems));
   } catch (e) {
     yield put(loadCartFailureAction(e));
     yield put(
